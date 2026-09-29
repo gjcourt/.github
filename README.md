@@ -29,7 +29,7 @@ tagline, and add the workflow from
 locally with:
 
 ```bash
-python3 scripts/readme_check.py path/to/README.md --description "$(gh api repos/gjcourt/REPO --jq .description)"
+python3 scripts/readme_check.py path/to/README.md --description "$(gh api repos/gjcourt/REPO --jq '.description // ""')"
 ```
 
 Changes to the standard itself go through a PR here; the reusable workflow is
