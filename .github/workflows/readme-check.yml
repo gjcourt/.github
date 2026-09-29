@@ -1,0 +1,24 @@
+# Reusable: checks a repo's README.md against README-STANDARD.md (structure
+# only). Callers: `uses: gjcourt/.github/.github/workflows/readme-check.yml@main`.
+name: readme-check
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: gjcourt/.github
+          path: .readme-standard
+      - name: Check README structure
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          about=$(gh api "repos/${GITHUB_REPOSITORY}" --jq '.description // ""')
+          python3 .readme-standard/scripts/readme_check.py README.md --description "$about"
