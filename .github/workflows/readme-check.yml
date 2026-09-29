@@ -1,5 +1,7 @@
 # Reusable: checks a repo's README.md against README-STANDARD.md (structure
 # only). Callers: `uses: gjcourt/.github/.github/workflows/readme-check.yml@main`.
+# The check script is fetched at the same commit as this workflow file, so a
+# caller pinned to a tag or SHA gets a matching script.
 name: readme-check
 on:
   workflow_call:
@@ -15,6 +17,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: gjcourt/.github
+          ref: ${{ github.job_workflow_sha }}
           path: .readme-standard
       - name: Check README structure
         env:

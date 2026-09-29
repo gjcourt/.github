@@ -11,7 +11,8 @@ templates, and the reusable check.
 - The check judges **structure only**. Don't add prose, length or style rules
   to it; those belong in review.
 - **Every template must pass the check**, and CI enforces that. Change the
-  check and the templates together.
+  check, its tests (`python3 -m unittest discover -s tests`) and the
+  templates together.
 - The reusable workflow is consumed at `@main` by other repos: a breaking
   change to the check breaks their next README PR. Loosen before tightening,
   and say so in the PR.

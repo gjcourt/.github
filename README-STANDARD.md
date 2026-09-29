@@ -57,7 +57,7 @@ Two to four sentences: the problem, what this does about it, and who it's for.
 |---|---|
 | `<!-- readme-type: … -->` | First line. One of the types below; tells the check which sections apply. Invisible when rendered. |
 | `# name` | The repo name as written by its author (`golinks`, `toppingctl`, `Pingo`). |
-| Tagline | One sentence, ≤ 120 characters, **byte-identical** to the GitHub About description. No trailing period in either. |
+| Tagline | One sentence, ≤ 120 characters, no trailing period, identical to the GitHub About description as rendered. GitHub allows 350; 120 keeps it to one sentence. |
 | Pitch | 2–4 sentences. The problem first, then the answer. No "blazingly fast", "simple", "powerful". |
 | `**Status:**` | Required. One line. Say what's true today and, if it matters, since when. |
 | Demo | UI → screenshot in `docs/img/`, alt text required. CLI → a fenced transcript of a real run, trimmed. |
@@ -105,7 +105,8 @@ it).
 - Second person, present tense, active voice: "Run `make test`", not "Tests
   can be run by…".
 - Code blocks are copy-paste-safe: no `$ ` prompts on commands, output shown
-  in a separate block (or marked as output).
+  in a separate block. The one exception is the demo transcript, which is a
+  `text` block and not meant to be pasted.
 - Relative links for anything in the repo; absolute links for other repos.
 - Wrap prose at whatever the repo's editor config says; don't hard-wrap
   tables or code.
@@ -131,10 +132,10 @@ jobs:
 ```
 
 It checks **structure, not prose**: the marker and a known type; `# name`; a
-tagline that matches the GitHub About description; a `**Status:**` line; the
-type's required sections present; and every known section in order. It fails
-with one line per problem. It does not judge wording, length or accuracy —
-that's review's job.
+tagline of at most 120 characters that matches the GitHub About description; a
+`**Status:**` line before the first section; the type's required sections
+present; and every known section in order, spelled exactly. It fails with one
+line per problem. It does not judge wording or accuracy — that's review's job.
 
 ## Adopting it
 

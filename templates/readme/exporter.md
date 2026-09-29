@@ -26,6 +26,8 @@ rate(name_thing_total[5m])
 
 ## Quick start
 
+Needs: <runtime + version>, and <the device or API it reads>.
+
 ```bash
 git clone https://github.com/gjcourt/name && cd name
 <run>

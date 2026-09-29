@@ -12,13 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Unit tests
+        run: python3 -m unittest discover -s tests -v
       - name: Every template passes
         run: for t in templates/readme/*.md; do python3 scripts/readme_check.py "$t"; done
       - name: This repo's README passes (incl. the About description)
         env:
           GH_TOKEN: ${{ github.token }}
-        run: python3 scripts/readme_check.py README.md --description "$(gh api repos/${GITHUB_REPOSITORY} --jq '.description // ""')"
-      - name: A broken README fails
-        run: |
-          printf '<!-- readme-type: tool -->\n# x\n\ntagline\n\n## Usage\n\n## Quick start\n' > /tmp/bad.md
-          if python3 scripts/readme_check.py /tmp/bad.md; then echo "expected failure"; exit 1; fi
+        run: python3 scripts/readme_check.py README.md --description "$(gh api "repos/${GITHUB_REPOSITORY}" --jq '.description // ""')"
+
+  # Exercise the reusable workflow the way an adopting repo calls it.
+  reusable:
+    uses: ./.github/workflows/readme-check.yml

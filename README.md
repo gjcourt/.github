@@ -15,8 +15,9 @@ place so they don't drift repo by repo. Start with the
 README-STANDARD.md                     the standard: principles, skeleton, types, style
 templates/readme/                      one starting README per type (tool, service, exporter, infra, content)
 scripts/readme_check.py                structural check (stdlib Python; structure only, never prose)
+tests/                                 unit tests for the check
 .github/workflows/readme-check.yml     reusable workflow other repos call
-.github/workflows/ci.yml               tests the check against the templates
+.github/workflows/ci.yml               runs the tests, checks the templates and this README
 ```
 
 ## Conventions
